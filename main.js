@@ -7,7 +7,7 @@ function version() {
 version()
 
 
-let allBooks = fetch('../books.json') //path to the file with json data
+let allBooks = fetch('./books.json') //path to the file with json data
         .then(response => {
             return response.json();
         })
