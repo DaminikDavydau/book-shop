@@ -1,9 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.4"
-            //tag.innerHTML = 
-            //.appendChild(document.createTextNode("v.1.3"))
+            tag.textContent = "v.1.4.1"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -25,14 +23,14 @@ function printout(data) {
     for (let i = 0; i<data.length; ++i) {
         unibuild("div#column-r div", "div", "class", "card", "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "img", "")
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "scr", "card", data[i].imageLink)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "scr", data[i].imageLink, "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "info", "")
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info)`, "h4", "", "", data[i].author)
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info)`, "h3", "", "", data[i].title)
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info)`, "div", "", "", data[i].description)
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info)`, "div", "class", "to_bag", "")
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info div.to_bag)`, "p", "", "", `Price: <span>${data[i].price}</span>$`)
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1} div.info div.to_bag)`, "button", "class", "add_to_bag", "Add to bag")
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h4", "", "", data[i].author)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h3", "", "", data[i].title)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "div", "", "", data[i].description)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "div", "class", "to_bag", "")
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "p", "", "", `Price: <span>${data[i].price}</span>$`)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "button", "class", "add_to_bag", "Add to bag")
 
 
         console.log(data[i]);
