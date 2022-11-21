@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.2"
+            tag.textContent = "v.1.5.3"
             version.append(tag);
             document.querySelector("body").append(version);
 }
