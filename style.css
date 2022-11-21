@@ -137,11 +137,34 @@ main#column-r div.card div.info h3 {
 	font-size: 20px;
 	font-weight: 500;
 }
-main#column-r div.card div.info p {
+main#column-r div.card div.info div {
 	font-size: 16px;
 	font-weight: 400;
+	height: 40px;
+	overflow: hidden;
 }
 
+
+main#column-r div.card div.info div.popup {
+	overflow: visible;
+	width: 100%;
+	position: relative;
+	height: 20px;
+}
+main#column-r div.card div.info div.popup button {
+	height: 20px;
+}
+main#column-r div.card div.info div.popup .pop_up {
+	background: rgba(0, 0, 0, 0.7);
+	color: white;
+	position: absolute;
+	top: 23px;
+	display: none;
+}
+main#column-r div.card div.info div.popup .show {
+	display: block;
+	z-index: 1000;
+}
 
 
 
