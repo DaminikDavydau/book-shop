@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.4.1"
+            tag.textContent = "v.1.5"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -28,6 +28,10 @@ function printout(data) {
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h4", "", "", data[i].author)
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h3", "", "", data[i].title)
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "div", "", "", data[i].description)
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "div", "class", "popup", "");
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.popup`, "button", "onclick", `popup(${i})`, "Show more")
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.popup`, "span", "class", "pop_up", data[i].description)
+
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "div", "class", "to_bag", "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "p", "", "", `Price: <span>${data[i].price}</span>$`)
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "button", "class", "add_to_bag", "Add to bag")
@@ -45,7 +49,7 @@ unibuild("div#row", "div", "id", "column-l", "")
 unibuild("div#column-l", "h1", "", "", "")
 unibuild("div#column-l h1", "a", "href", "./", "World of Tales")
 unibuild("div#column-l", "div", "class", "confirmation", "")
-unibuild("div.confirmation", "a", "href", "./", "Confirm Order")
+unibuild("div.confirmation", "a", "href", "./confirm.html", "Confirm Order")
 unibuild("div.confirmation", "p", "", "", "0$")
 unibuild("div#column-l", "div", "id", "bag", "")
 
@@ -65,4 +69,15 @@ fetch('./books.json') //path to the file with json data
         });
 
 
-
+function popup(i) {
+let button = document.querySelectorAll("main#column-r div.card div.info div.popup button")[i];
+if (button.innerHTML == "Show more") {
+button.innerHTML = "Close";
+}
+else {
+button.innerHTML = "Show more";
+};
+let popup = document.getElementsByClassName("pop_up")[i];
+console.log(popup);
+popup.classList.toggle("show");
+}
