@@ -17,7 +17,7 @@ function unibuild (where, what, attr, attrName, text) {
         tag.setAttribute('scr', `./images/${attrName}.jpg`)
         tag.setAttribute('draggable', 'true')
         tag.setAttribute('ondragstart', "drag(event)")
-        tag.setAttribute('draggabletext', `./images/${attrName}.jpg ${data[i].author} ${data[i].title}`)
+        tag.setAttribute('draggabletext', `./images/${attrName}.jpg ${data[attrName].author} ${data[attrName].title}`)
 
     }
     else{
