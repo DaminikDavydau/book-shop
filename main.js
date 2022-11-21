@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5"
+            tag.textContent = "v.1.5.1"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -23,7 +23,7 @@ function printout(data) {
     for (let i = 0; i<data.length; ++i) {
         unibuild("div#column-r div", "div", "class", "card", "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "img", "")
-        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "scr", data[i].imageLink, "")
+        unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "scr", `./images/${i+1}.jpg`, "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "info", "")
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h4", "", "", data[i].author)
         unibuild(`div#column-r div div.card:nth-of-type(${i+1}) div.info`, "h3", "", "", data[i].title)
@@ -47,14 +47,14 @@ function printout(data) {
 unibuild("body", "div", "id", "row", "")
 unibuild("div#row", "div", "id", "column-l", "")
 unibuild("div#column-l", "h1", "", "", "")
-unibuild("div#column-l h1", "a", "href", "./", "World of Tales")
+unibuild("div#column-l h1", "a", "href", "./", "World of JavaScript")
 unibuild("div#column-l", "div", "class", "confirmation", "")
 unibuild("div.confirmation", "a", "href", "./confirm.html", "Confirm Order")
 unibuild("div.confirmation", "p", "", "", "0$")
 unibuild("div#column-l", "div", "id", "bag", "")
 
-unibuild("div#row", "div", "id", "column-r", "")
-unibuild("div#column-r", "h2", "", "", "Welcome to the World of Tales")
+unibuild("div#row", "main", "id", "column-r", "")
+unibuild("div#column-r", "h2", "", "", "Welcome to the World of JavaScript")
 unibuild("div#column-r", "div", "", "", "")
 
 
