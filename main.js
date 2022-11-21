@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.1"
+            tag.textContent = "v.1.5.2"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -11,15 +11,20 @@ version()
 function unibuild (where, what, attr, attrName, text) {
     let doc = new DocumentFragment();
     let tag = document.createElement(what);
-    if (what == 'img') {
-        tag.scr = './images/1.jpg'
+    if (what == "img") {
+        console.log(what == "img")
+        tag.setAttribute('scr', `./images/${attrName}.jpg`)
+        tag.setAttribute('draggable', 'true')
+        tag.setAttribute('ondragstart', "drag(event)")
+        tag.setAttribute('draggabletext', `./images/${attrName}.jpg ${data[i].author} ${data[i].title}`)
+
     }
     else{
         if (attr!="") {
             tag.setAttribute(attr, attrName);
         }
         tag.innerHTML = text
-    }
+    };
     doc.append(tag);
     document.querySelector(where).append(doc);
 }
@@ -28,7 +33,7 @@ function printout(data) {
     for (let i = 0; i<data.length; ++i) {
         unibuild("main#column-r div", "div", "class", "card", "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "img", "")
-        unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "scr", `./images/${i+1}.jpg`, "")
+        unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "", i, "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "info", "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info`, "h4", "", "", data[i].author)
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info`, "h3", "", "", data[i].title)
@@ -85,4 +90,30 @@ button.innerHTML = "Show more";
 let popup = document.getElementsByClassName("pop_up")[i];
 console.log(popup);
 popup.classList.toggle("show");
+}
+
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.fordrag);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+
+function dragfunc() {
+    let imgs = document.getElementsByTagName("img");
+    for (let i=0; i<imgs.length; ++i) {
+        imgs[i].setAttribute('draggable', 'true')
+        imgs[i].setAttribute('ondragstart', "drag(event)")
+        imgs[i].setAttribute('draggabletext', "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
+    }
 }
