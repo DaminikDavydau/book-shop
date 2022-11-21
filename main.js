@@ -12,6 +12,7 @@ function unibuild (where, what, attr, attrName, text) {
     let doc = new DocumentFragment();
     let tag = document.createElement(what);
     if (what == "img") {
+        let data = text;
         console.log(what == "img")
         tag.setAttribute('scr', `./images/${attrName}.jpg`)
         tag.setAttribute('draggable', 'true')
@@ -33,7 +34,7 @@ function printout(data) {
     for (let i = 0; i<data.length; ++i) {
         unibuild("main#column-r div", "div", "class", "card", "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "img", "")
-        unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "", i, "")
+        unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.img`, "img", "", i, data)
         unibuild(`main#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "info", "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info`, "h4", "", "", data[i].author)
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info`, "h3", "", "", data[i].title)
