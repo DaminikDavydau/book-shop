@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.6"
+            tag.textContent = "v.1.5.7"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -14,7 +14,9 @@ function unibuild (where, what, attr, attrName, text) {
     if (what == "img") {
         let data = text;
         console.log(what == "img")
-        tag.scr = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
+        let link = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
+        console.log(link)
+        tag.scr = link
         tag.setAttribute('draggable', 'true')
         tag.setAttribute('ondragstart', "drag(event)")
         tag.setAttribute('draggabletext', `./${attrName}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}`)
@@ -80,6 +82,11 @@ fetch('./books.json') //path to the file with json data
         });
 
 
+let bag = document.getElementsById("bag");
+bag.setAttribute('ondrop', "drop(event)")
+bag.setAttribute('ondragover', "allowDrop(event)"
+
+
 function popup(i) {
 let button = document.querySelectorAll("main#column-r div.card div.info div.popup button")[i];
 if (button.innerHTML == "Show more") {
@@ -100,7 +107,7 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.fordrag);
+  ev.dataTransfer.setData("text", ev.target.draggabletext);
 }
 
 function drop(ev) {
@@ -108,6 +115,9 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
 }
+
+
+
 
 
 function dragfunc() {
