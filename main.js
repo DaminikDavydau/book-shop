@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.9"
+            tag.textContent = "v.1.5.10"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -50,7 +50,7 @@ function printout(data) {
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "p", "", "", `Price: <span>${data[i].price}</span>$`)
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "button", "class", "add_to_bag", "Add to bag")
 
-        bag = document.getElementsByClassName("add_to_bag");
+        bag = document.getElementsByClassName("add_to_bag")[i];
         bag.setAttribute('draggabletext', `./${i+1}.jpg!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
         bag.setAttribute('id', i)
 
