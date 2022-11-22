@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.4"
+            tag.textContent = "v.1.6.6"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -110,20 +110,23 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.draggabletext);
+  ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
+    var dataId = ev.dataTransfer.getData("text");
     console.log(data)
-    text = data.split('!!!!')
     unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
+    let elem = document.getElementById(card_id);
+    text = elem.getAttribute('draggabletext');
+    text = text.split('!!!!')
     unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
-    let tprice = document.getElementById(tprice);
-    let price = parseInt(tprice.innerHTML) + text[3];
+    let tprice = document.getElementById('tprice');
+    console.log(tprice.innerHTML)
+    let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
 }
 
@@ -136,7 +139,7 @@ function onclick_to_bag(card_id) {
     unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
-    let tprice = document.getElementById(tprice);
+    let tprice = document.getElementById('tprice');
     console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
