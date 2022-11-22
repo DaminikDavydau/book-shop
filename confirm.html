@@ -3,10 +3,164 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Book shop - Main</title>
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<title>Book shop - Confirm Order</title>
+	<style type="text/css">
+		input {
+			border-radius: 5px;
+		}
+		input.correct {
+	border: 2px solid green ;
+}
+
+.incorrect {
+	border: 2px solid red ;
+}
+	</style>
 </head>
 <body>
+	<h1>Confirmation form</h1>
+	<a href="./index.html">Back to main page</a>
+	<form onsubmit="alert(`The order created. The delivery address is ${document.getElementsByName('street')[0].value} street house ${document.getElementsByName('house')[0].value} flat ${document.getElementsByName('flat')[0].value}. Customer ${document.getElementsByName('fname')[0].value} ${document.getElementsByName('lname')[0].value}`);return false" method="post">
+		<script type="text/javascript">
+			function iscorrect() {
+				let countcorrect = document.getElementsByClassName("correct")
+				if (countcorrect.length >= 6) {
+					let reg = document.getElementById("register")
+					reg.removeAttribute("disabled");
+				}
+				else {
+					let reg = document.getElementById("register")
+					reg.setAttribute("disabled", "disabled");
+				}
+			};
 
+			function fstname(value) {
+				let tag = document.getElementsByName("fname")[0];
+				if (value == value.match(/[A-Za-z]{4,}/)) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+			function lastname(value) {
+				let tag = document.getElementsByName("lname")[0];
+				if (value == value.match(/[A-Za-z]{5,}/)) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+			function delivDate(value, min) {
+				let tag = document.getElementsByName("delDate")[0];
+				if (value + min != min) {
+				
+				value = value.split('-')
+				value = `${value[0]}${value[1]}${value[2]}`
+				min = min.split('-')
+				min = `${min[0]}${min[1]}${min[2]}`
+				if (value >= min) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			}
+			else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+			function streetn(value) {
+				let tag = document.getElementsByName("street")[0];
+				if (value == value.match(/[0-9A-Za-z ]{5,}/)) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+			function housen(value) {
+				let tag = document.getElementsByName("house")[0];
+				if (value == value.match(/[0-9]{1,}/)) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+			function flatn(value) {
+				let tag = document.getElementsByName("flat")[0];
+				if (value == value.match(/[0-9]+[0-9-]*/)) {
+					tag.setAttribute("class", 'correct')
+					iscorrect()
+				}
+				else {
+					tag.setAttribute("class", 'incorrect') 
+				}
+			};
+
+		</script>
+		<br><br>
+		<label for="fname">First Name:</label>
+        <input type="text" pattern="[A-Za-z]{4,}" name="fname" id="fname"  onblur="fstname(this.value)">
+        <br><br>
+  
+        <label for="lname">Last Name:</label>
+        <input type="text" pattern="[A-Za-z]{5,}" name="lname" id="lname" onblur="lastname(this.value)">
+        <br><br>
+
+        <label for="delDate">Delivery date:</label>
+		<input type="date" id="delDate" name="delDate" onblur="delivDate(this.value, this.min)" >
+       	<script type="text/javascript">
+       		let date = new Date().toISOString().split("T")[0].split("-");
+       		date = `${date[0]}-${date[1]}-${Number(date[2])+1}`
+       		delDate.min = date
+   		</script> 
+		<br><br>
+
+		<label for="street">Street:</label>
+        <input type="text" pattern="[0-9A-Za-z ]{5,}" name="street" id="street" onblur="streetn(this.value)" >
+        <br><br>
+
+		<label for="house">House number:</label>
+        <input type="text" pattern="[0-9]{1,}" name="house" id="house" onblur="housen(this.value)" >
+        <br><br>
+
+		<label for="flat">Flat number:</label>
+        <input type="text" pattern="[0-9]+[0-9-]*" name="flat" id="flat" onblur="flatn(this.value)" >
+        <br><br>
+
+		<input class="radio_period" id="month" type="radio" name="radio">
+		<label class="radio_period" for="month">Cash</label>
+		<input class="radio_period right" id="once" type="radio" name="radio" checked="checked">
+		<label class="radio_period" for="once">Card</label>
+		<br><br>
+
+		<input type="submit" id="register" value="Submit" disabled="disabled">
+		<script type="text/javascript">
+			function sbmt() {
+
+				let doc = new DocumentFragment();
+    let tag = document.createElement('h3');
+    let str = document.getElementsByName("house")[0]
+    tag.innerHTML = `The order created. The delivery address is ${str} street house 3 flat 10. Customer John Gald`
+    doc.append(tag);
+    document.querySelector('body input').append(doc);
+
+
+			}
+		</script>
+	</form>
 </body>
 </html>
