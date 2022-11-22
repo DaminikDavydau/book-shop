@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.1"
+            tag.textContent = "v.1.6.2"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -117,9 +117,9 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     text = data.split('!!!!')
-    printout('div#column-l div#bag', 'img', '', text[0], '')
-    printout('div#column-l div#bag', 'h4', '', '', text[1])
-    printout('div#column-l div#bag', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag', 'img', '', text[0], '')
+    unibuild('div#column-l div#bag', 'h4', '', '', text[1])
+    unibuild('div#column-l div#bag', 'h4', '', '', text[2])
     let tprice = document.getElementById(tprice);
     let price = parseInt(tprice.innerHTML) + text[3];
     tprice.innerHTML = `${price}$`
@@ -130,20 +130,10 @@ function onclick_to_bag(card_id) {
     let elem = document.getElementById(card_id);
     text = elem.draggabletext;
     text = text.split('!!!!')
-    printout('div#column-l div#bag', 'img', '', text[0], '')
-    printout('div#column-l div#bag', 'h4', '', '', text[1])
-    printout('div#column-l div#bag', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag', 'img', '', text[0], '')
+    unibuild('div#column-l div#bag', 'h4', '', '', text[1])
+    unibuild('div#column-l div#bag', 'h4', '', '', text[2])
     let tprice = document.getElementById(tprice);
     let price = parseInt(tprice.innerHTML) + text[3];
     tprice.innerHTML = `${price}$`
-}
-
-
-function dragfunc() {
-    let imgs = document.getElementsByTagName("img");
-    for (let i=0; i<imgs.length; ++i) {
-        imgs[i].setAttribute('draggable', 'true')
-        imgs[i].setAttribute('ondragstart', "drag(event)")
-        imgs[i].setAttribute('draggabletext', "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-    }
 }
