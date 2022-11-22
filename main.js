@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.7"
+            tag.textContent = "v.1.6.8"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -18,6 +18,7 @@ function unibuild (where, what, attr, attrName, text) {
         tag.setAttribute('src', link)
         if (text.length > 0) {
             let data = text;
+            tag.setAttribute('id', `img${attrName}`)
             tag.setAttribute('draggable', 'true')
             tag.setAttribute('ondragstart', "drag(event)")
             tag.setAttribute('draggabletext', `${attrName}!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
@@ -124,6 +125,9 @@ function drop(ev) {
     unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag div.card', 'button', 'onclick', `remove(${text[3]})`, 'Remove')
+    btn = document.querySelectorAll("div#column-l div#bag div.card button")
+    btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
     console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
@@ -139,8 +143,27 @@ function onclick_to_bag(card_id) {
     unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
     unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag div.card', 'button', 'onclick', `remove(${text[3]})`, 'Remove')
+    btn = document.querySelectorAll("div#column-l div#bag div.card button")
+    btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
     console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
+}
+
+function remove(value) {
+    let cardInd;
+    let cards = document.querySelectorAll("div#column-l div#bag div.card button")
+    for (let i = 0; i<cards.length; ++i) {
+if (cards.getAttribute('value') == value) {cardInd = i}}
+
+    let tprice = document.getElementById('tprice');
+    console.log(tprice.innerHTML)
+    let price = parseInt(tprice.innerHTML) - parseInt(value);
+    tprice.innerHTML = `${price}$`
+
+let card = document.querySelectorAll("div#column-l div#bag div.card")[cardInd]
+card.remove()
+
 }
