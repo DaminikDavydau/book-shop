@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.6"
+            tag.textContent = "v.1.6.7"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -115,8 +115,8 @@ function drag(ev) {
 
 function drop(ev) {
     ev.preventDefault();
-    var dataId = ev.dataTransfer.getData("text");
-    console.log(data)
+    var card_id = ev.dataTransfer.getData("text");
+    console.log(card_id)
     unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
     let elem = document.getElementById(card_id);
     text = elem.getAttribute('draggabletext');
