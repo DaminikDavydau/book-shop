@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.5"
+            tag.textContent = "v.1.5.6"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -14,10 +14,10 @@ function unibuild (where, what, attr, attrName, text) {
     if (what == "img") {
         let data = text;
         console.log(what == "img")
-        tag.scr = `https://daminikdavydau.github.io/book-shop/images/${attrName+1}.jpg`
+        tag.scr = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
         tag.setAttribute('draggable', 'true')
         tag.setAttribute('ondragstart', "drag(event)")
-        tag.setAttribute('draggabletext', `./images/${attrName}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}`)
+        tag.setAttribute('draggabletext', `./${attrName}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}`)
 
     }
     else{
