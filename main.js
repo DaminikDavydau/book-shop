@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.9"
+            tag.textContent = "v.1.6.10"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -122,10 +122,11 @@ function drop(ev) {
     let elem = document.getElementById(card_id);
     text = elem.getAttribute('draggabletext');
     text = text.split('!!!!')
-    unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
-    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
-    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
-    unibuild('div#column-l div#bag div.card', 'button', 'onclick', `remove(${text[3]})`, 'Remove')
+    let card = document.querySelectorAll("div#column-l div#bag div.card")
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'img', '', text[0], '')
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'h4', '', '', text[1])
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'h4', '', '', text[2])
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'button', 'onclick', `remove(${text[3]})`, 'Remove')
     btn = document.querySelectorAll("div#column-l div#bag div.card button")
     btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
@@ -140,10 +141,11 @@ function onclick_to_bag(card_id) {
     let elem = document.getElementById(card_id);
     text = elem.getAttribute('draggabletext');
     text = text.split('!!!!')
-    unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
-    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
-    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
-    unibuild('div#column-l div#bag div.card', 'button', 'onclick', `remove(${text[3]})`, 'Remove')
+    let card = document.querySelectorAll("div#column-l div#bag div.card")
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'img', '', text[0], '')
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'h4', '', '', text[1])
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'h4', '', '', text[2])
+    unibuild(`div#column-l div#bag div.card:nth-of-type(${card.length-1}`, 'button', 'onclick', `remove(${text[3]})`, 'Remove')
     btn = document.querySelectorAll("div#column-l div#bag div.card button")
     btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
