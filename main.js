@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.3"
+            tag.textContent = "v.1.6.4"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -13,7 +13,7 @@ function unibuild (where, what, attr, attrName, text) {
     let tag = document.createElement(what);
     if (what == "img") {
         console.log(what == "img")
-        let link = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
+        let link = `https://daminikdavydau.github.io/book-shop/${+(attrName)+1}.jpg`
         console.log(link)
         tag.setAttribute('src', link)
         if (text.length > 0) {
@@ -116,10 +116,12 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
+    console.log(data)
     text = data.split('!!!!')
-    unibuild('div#column-l div#bag', 'img', '', text[0], '')
-    unibuild('div#column-l div#bag', 'h4', '', '', text[1])
-    unibuild('div#column-l div#bag', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
+    unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
+    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
+    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
     let tprice = document.getElementById(tprice);
     let price = parseInt(tprice.innerHTML) + text[3];
     tprice.innerHTML = `${price}$`
@@ -127,13 +129,15 @@ function drop(ev) {
 
 
 function onclick_to_bag(card_id) {
+    unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
     let elem = document.getElementById(card_id);
     text = elem.getAttribute('draggabletext');
     text = text.split('!!!!')
-    unibuild('div#column-l div#bag', 'img', '', text[0], '')
-    unibuild('div#column-l div#bag', 'h4', '', '', text[1])
-    unibuild('div#column-l div#bag', 'h4', '', '', text[2])
+    unibuild('div#column-l div#bag div.card', 'img', '', text[0], '')
+    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[1])
+    unibuild('div#column-l div#bag div.card', 'h4', '', '', text[2])
     let tprice = document.getElementById(tprice);
-    let price = parseInt(tprice.innerHTML) + text[3];
+    console.log(tprice.innerHTML)
+    let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
 }
