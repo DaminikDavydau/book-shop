@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.7"
+            tag.textContent = "v.1.5.8"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -84,7 +84,7 @@ fetch('./books.json') //path to the file with json data
 
 let bag = document.getElementsById("bag");
 bag.setAttribute('ondrop', "drop(event)")
-bag.setAttribute('ondragover', "allowDrop(event)"
+bag.setAttribute('ondragover', "allowDrop(event)")
 
 
 function popup(i) {
