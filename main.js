@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6"
+            tag.textContent = "v.1.6.1"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -20,7 +20,7 @@ function unibuild (where, what, attr, attrName, text) {
             let data = text;
             tag.setAttribute('draggable', 'true')
             tag.setAttribute('ondragstart', "drag(event)")
-            tag.setAttribute('draggabletext', `./${attrName+1}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
+            tag.setAttribute('draggabletext', `${attrName}!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
         }
     }
     else{
@@ -54,7 +54,7 @@ function printout(data) {
         bag = document.getElementsByClassName("add_to_bag")[i];
         bag.setAttribute('draggabletext', `${i}!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
         bag.setAttribute('id', i)
-        bag.setAttribute('onclick', 'onclick_to_bag(i)')
+        bag.setAttribute('onclick', `onclick_to_bag(${i})`)
 
         console.log(data[i]);
     }
@@ -114,9 +114,15 @@ function drag(ev) {
 }
 
 function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    text = data.split('!!!!')
+    printout('div#column-l div#bag', 'img', '', text[0], '')
+    printout('div#column-l div#bag', 'h4', '', '', text[1])
+    printout('div#column-l div#bag', 'h4', '', '', text[2])
+    let tprice = document.getElementById(tprice);
+    let price = parseInt(tprice.innerHTML) + text[3];
+    tprice.innerHTML = `${price}$`
 }
 
 
