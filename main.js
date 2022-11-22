@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.8"
+            tag.textContent = "v.1.5.9"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -16,10 +16,10 @@ function unibuild (where, what, attr, attrName, text) {
         console.log(what == "img")
         let link = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
         console.log(link)
-        tag.scr = link
+        tag.setAttribute('src', link)
         tag.setAttribute('draggable', 'true')
         tag.setAttribute('ondragstart', "drag(event)")
-        tag.setAttribute('draggabletext', `./${attrName}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}`)
+        tag.setAttribute('draggabletext', `./${attrName+1}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
 
     }
     else{
@@ -33,6 +33,7 @@ function unibuild (where, what, attr, attrName, text) {
 }
 
 function printout(data) {
+    let bag;
     for (let i = 0; i<data.length; ++i) {
         unibuild("main#column-r div", "div", "class", "card", "")
         unibuild(`main#column-r div div.card:nth-of-type(${i+1})`, "div", "class", "img", "")
@@ -49,6 +50,9 @@ function printout(data) {
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "p", "", "", `Price: <span>${data[i].price}</span>$`)
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "button", "class", "add_to_bag", "Add to bag")
 
+        bag = document.getElementsByClassName("add_to_bag");
+        bag.setAttribute('draggabletext', `./${i+1}.jpg!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
+        bag.setAttribute('id', i)
 
         console.log(data[i]);
     }
@@ -82,7 +86,7 @@ fetch('./books.json') //path to the file with json data
         });
 
 
-let bag = document.getElementsById("bag");
+let bag = document.getElementById("bag");
 bag.setAttribute('ondrop', "drop(event)")
 bag.setAttribute('ondragover', "allowDrop(event)")
 
