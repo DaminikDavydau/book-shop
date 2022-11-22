@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.8"
+            tag.textContent = "v.1.6.9"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -156,7 +156,7 @@ function remove(value) {
     let cardInd;
     let cards = document.querySelectorAll("div#column-l div#bag div.card button")
     for (let i = 0; i<cards.length; ++i) {
-if (cards.getAttribute('value') == value) {cardInd = i}}
+if (cards[i].getAttribute('value') == value) {cardInd = i}}
 
     let tprice = document.getElementById('tprice');
     console.log(tprice.innerHTML)
