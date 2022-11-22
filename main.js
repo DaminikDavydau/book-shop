@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.2"
+            tag.textContent = "v.1.6.3"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -128,7 +128,7 @@ function drop(ev) {
 
 function onclick_to_bag(card_id) {
     let elem = document.getElementById(card_id);
-    text = elem.draggabletext;
+    text = elem.getAttribute('draggabletext');
     text = text.split('!!!!')
     unibuild('div#column-l div#bag', 'img', '', text[0], '')
     unibuild('div#column-l div#bag', 'h4', '', '', text[1])
