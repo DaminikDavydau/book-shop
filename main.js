@@ -1,7 +1,7 @@
 function version() {
             let version = new DocumentFragment();
             let tag = document.createElement("h1")
-            tag.textContent = "v.1.5.10"
+            tag.textContent = "v.1.6"
             version.append(tag);
             document.querySelector("body").append(version);
 }
@@ -12,15 +12,16 @@ function unibuild (where, what, attr, attrName, text) {
     let doc = new DocumentFragment();
     let tag = document.createElement(what);
     if (what == "img") {
-        let data = text;
         console.log(what == "img")
         let link = `https://daminikdavydau.github.io/book-shop/${attrName+1}.jpg`
         console.log(link)
         tag.setAttribute('src', link)
-        tag.setAttribute('draggable', 'true')
-        tag.setAttribute('ondragstart', "drag(event)")
-        tag.setAttribute('draggabletext', `./${attrName+1}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
-
+        if (text.length > 0) {
+            let data = text;
+            tag.setAttribute('draggable', 'true')
+            tag.setAttribute('ondragstart', "drag(event)")
+            tag.setAttribute('draggabletext', `./${attrName+1}.jpg!!!!${data[attrName].author}!!!!${data[attrName].title}!!!!${data[attrName].price}`)
+        }
     }
     else{
         if (attr!="") {
@@ -51,13 +52,11 @@ function printout(data) {
         unibuild(`main#column-r div div.card:nth-of-type(${i+1}) div.info div.to_bag`, "button", "class", "add_to_bag", "Add to bag")
 
         bag = document.getElementsByClassName("add_to_bag")[i];
-        bag.setAttribute('draggabletext', `./${i+1}.jpg!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
+        bag.setAttribute('draggabletext', `${i}!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
         bag.setAttribute('id', i)
+        bag.setAttribute('onclick', 'onclick_to_bag(i)')
 
         console.log(data[i]);
-    }
-    for (let i = 0; i<data.length; ++i) {
-        console.log(data[i].author);
     }
 }
 
@@ -67,7 +66,7 @@ unibuild("div#column-l", "h1", "", "", "")
 unibuild("div#column-l h1", "a", "href", "./", "World of JavaScript")
 unibuild("div#column-l", "div", "class", "confirmation", "")
 unibuild("div.confirmation", "a", "href", "./confirm.html", "Confirm Order")
-unibuild("div.confirmation", "p", "", "", "0$")
+unibuild("div.confirmation", "p", "id", "tprice", "0$")
 unibuild("div#column-l", "div", "id", "bag", "")
 
 unibuild("div#row", "main", "id", "column-r", "")
@@ -121,7 +120,17 @@ function drop(ev) {
 }
 
 
-
+function onclick_to_bag(card_id) {
+    let elem = document.getElementById(card_id);
+    text = elem.draggabletext;
+    text = text.split('!!!!')
+    printout('div#column-l div#bag', 'img', '', text[0], '')
+    printout('div#column-l div#bag', 'h4', '', '', text[1])
+    printout('div#column-l div#bag', 'h4', '', '', text[2])
+    let tprice = document.getElementById(tprice);
+    let price = parseInt(tprice.innerHTML) + text[3];
+    tprice.innerHTML = `${price}$`
+}
 
 
 function dragfunc() {
