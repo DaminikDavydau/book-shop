@@ -38,22 +38,24 @@
 				let tag = document.getElementsByName("fname")[0];
 				if (value == value.match(/[A-Za-z]{4,}/)) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
-				}
+				};
+				iscorrect()
 			};
 
 			function lastname(value) {
 				let tag = document.getElementsByName("lname")[0];
 				if (value == value.match(/[A-Za-z]{5,}/)) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
-				}
+				};
+				iscorrect()
 			};
 
 			function delivDate(value, min) {
@@ -66,7 +68,7 @@
 				min = `${min[0]}${min[1]}${min[2]}`
 				if (value >= min) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
@@ -74,40 +76,44 @@
 			}
 			else {
 					tag.setAttribute("class", 'incorrect') 
-				}
+				};
+				iscorrect()
 			};
 
 			function streetn(value) {
 				let tag = document.getElementsByName("street")[0];
 				if (value == value.match(/[0-9A-Za-z ]{5,}/)) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
-				}
+				};
+				iscorrect()
 			};
 
 			function housen(value) {
 				let tag = document.getElementsByName("house")[0];
 				if (value == value.match(/[0-9]{1,}/)) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
 				}
+				iscorrect()
 			};
 
 			function flatn(value) {
 				let tag = document.getElementsByName("flat")[0];
 				if (value == value.match(/[0-9]+[0-9-]*/)) {
 					tag.setAttribute("class", 'correct')
-					iscorrect()
+					
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
-				}
+				};
+				iscorrect()
 			};
 
 		</script>
