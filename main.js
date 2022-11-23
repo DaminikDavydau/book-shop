@@ -1,12 +1,10 @@
-function version() {
-            let version = new DocumentFragment();
-            let tag = document.createElement("h1")
-            tag.textContent = "v.1.6.10"
-            version.append(tag);
-            document.querySelector("body").append(version);
-}
-
-version()
+//function version() {
+//            let version = new DocumentFragment();
+//            let tag = document.createElement("h1")
+//            tag.textContent = "v.1.6.11"
+//            version.append(tag);
+//            document.querySelector("body").append(version);
+//}; version()
 
 function unibuild (where, what, attr, attrName, text) {
     let doc = new DocumentFragment();
