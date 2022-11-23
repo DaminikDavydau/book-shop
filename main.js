@@ -1,7 +1,7 @@
 //function version() {
 //            let version = new DocumentFragment();
 //            let tag = document.createElement("h1")
-//            tag.textContent = "v.1.6.11"
+//            tag.textContent = "v.1.6.12"
 //            version.append(tag);
 //            document.querySelector("body").append(version);
 //}; version()
@@ -67,6 +67,8 @@ unibuild("div#column-l", "div", "class", "confirmation", "")
 unibuild("div.confirmation", "a", "href", "./confirm.html", "Confirm Order")
 unibuild("div.confirmation", "p", "id", "tprice", "0$")
 unibuild("div#column-l", "div", "id", "bag", "")
+unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
+
 
 unibuild("div#row", "main", "id", "column-r", "")
 unibuild("main#column-r", "h2", "", "", "Welcome to the World of JavaScript")
