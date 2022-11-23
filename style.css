@@ -47,6 +47,7 @@ div#column-l div.confirmation p {
 	right: 0px;
 }
 div#column-l div#bag {
+	min-height: 300px;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
@@ -155,8 +156,11 @@ main#column-r div.card div.info div.popup button {
 	height: 20px;
 }
 main#column-r div.card div.info div.popup .pop_up {
-	background: rgba(0, 0, 0, 0.7);
-	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	background: rgba(220, 220, 220, 0.5);
+	backdrop-filter: blur(2px);
+	color: black;
 	position: absolute;
 	top: 23px;
 	display: none;
@@ -181,4 +185,19 @@ main#column-r div.card div.info div.to_bag button {
 	right: 10px;
 	border: none;
 	background: none;
+}
+
+
+
+
+
+
+
+
+input.correct {
+	border: 2px solid green ;
+}
+
+.incorrect {
+	border: 2px solid red ;
 }
