@@ -1,7 +1,7 @@
 //function version() {
 //            let version = new DocumentFragment();
 //            let tag = document.createElement("h1")
-//            tag.textContent = "v.1.6.12"
+//            tag.textContent = "v.1.6.11"
 //            version.append(tag);
 //            document.querySelector("body").append(version);
 //}; version()
@@ -10,9 +10,7 @@ function unibuild (where, what, attr, attrName, text) {
     let doc = new DocumentFragment();
     let tag = document.createElement(what);
     if (what == "img") {
-        console.log(what == "img")
         let link = `https://daminikdavydau.github.io/book-shop/${+(attrName)+1}.jpg`
-        console.log(link)
         tag.setAttribute('src', link)
         if (text.length > 0) {
             let data = text;
@@ -54,8 +52,6 @@ function printout(data) {
         bag.setAttribute('draggabletext', `${i}!!!!${data[i].author}!!!!${data[i].title}!!!!${data[i].price}`)
         bag.setAttribute('id', i)
         bag.setAttribute('onclick', `onclick_to_bag(${i})`)
-
-        console.log(data[i]);
     }
 }
 
@@ -81,7 +77,6 @@ fetch('./books.json') //path to the file with json data
             return response.json();
         })
         .then(data => {
-            console.log(data);
             printout(data)
         });
 
@@ -100,7 +95,6 @@ else {
 button.innerHTML = "Show more";
 };
 let popup = document.getElementsByClassName("pop_up")[i];
-console.log(popup);
 popup.classList.toggle("show");
 }
 
@@ -117,7 +111,6 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var card_id = ev.dataTransfer.getData("text");
-    console.log(card_id)
     unibuild('div#column-l div#bag', 'div', 'class', 'card', '')
     let elem = document.getElementById(card_id);
     text = elem.getAttribute('draggabletext');
@@ -130,7 +123,6 @@ function drop(ev) {
     btn = document.querySelectorAll("div#column-l div#bag div.card button")
     btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
-    console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
 }
@@ -149,7 +141,6 @@ function onclick_to_bag(card_id) {
     btn = document.querySelectorAll("div#column-l div#bag div.card button")
     btn[btn.length-1].setAttribute('value', text[3])
     let tprice = document.getElementById('tprice');
-    console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) + parseInt(text[3]);
     tprice.innerHTML = `${price}$`
 }
@@ -161,7 +152,6 @@ function remove(value) {
 if (cards[i].getAttribute('value') == value) {cardInd = i}}
 
     let tprice = document.getElementById('tprice');
-    console.log(tprice.innerHTML)
     let price = parseInt(tprice.innerHTML) - parseInt(value);
     tprice.innerHTML = `${price}$`
 
