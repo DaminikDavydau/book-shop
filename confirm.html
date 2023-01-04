@@ -16,11 +16,46 @@
 	border: 2px solid red ;
 }
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".correctspan").hide();
+  			$("input").blur(function(){
+    			$(".correctspan").hide();
+    			$(".incorrectspan").show();
+  			});  
+		});
+	</script>
 </head>
 <body>
 	<h1>Confirmation form</h1>
 	<a href="./index.html">Back to main page</a>
-	<form onsubmit="alert(`The order created. The delivery address is ${document.getElementsByName('street')[0].value} street house ${document.getElementsByName('house')[0].value} flat ${document.getElementsByName('flat')[0].value}. Customer ${document.getElementsByName('fname')[0].value} ${document.getElementsByName('lname')[0].value}`);return false" method="post">
+	<h4 style="margin-bottom: 7px;">To submit the form:</h4>
+	<ol type="I" style="margin:0px auto;">
+		<li>
+			<p style="margin: auto;">Input your data:</p>
+			<ul>
+				<li>
+					First Name: Only letters, min length 4; Last Name: Only letters, min length 5
+				</li>
+				<li>
+					Delivery date: Enter a date starting from tomarrow
+				</li>
+				<li>
+					Street: Letters and numbers, min length 5; House number: Only numbers, min length 1; Flat number: Numbers greater from 0, '23-2' format is also correct
+				</li>
+			</ul>
+		</li>
+		<li>
+			Choose payment method
+		</li>
+		<li>
+			And click Submit button
+		</li>
+	</ol>
+
+
+	<form action="https://www.w3schools.com/action_page.php" onsubmit="alert(`The order created. The delivery address is ${document.getElementsByName('street')[0].value} street house ${document.getElementsByName('house')[0].value} flat ${document.getElementsByName('flat')[0].value}. Customer ${document.getElementsByName('fname')[0].value} ${document.getElementsByName('lname')[0].value}`);//return false" method="post">
 		<script type="text/javascript">
 			function iscorrect() {
 				let countcorrect = document.getElementsByClassName("correct")
@@ -36,82 +71,100 @@
 
 			function fstname(value) {
 				let tag = document.getElementsByName("fname")[0];
+				let spn = document.getElementsByTagName("span")[0]
 				if (value == value.match(/[A-Za-z]{4,}/)) {
 					tag.setAttribute("class", 'correct')
-					
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
 				};
 				iscorrect()
 			};
 
 			function lastname(value) {
 				let tag = document.getElementsByName("lname")[0];
+				let spn = document.getElementsByTagName("span")[1]
 				if (value == value.match(/[A-Za-z]{5,}/)) {
 					tag.setAttribute("class", 'correct')
-					
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
 				};
 				iscorrect()
 			};
 
 			function delivDate(value, min) {
 				let tag = document.getElementsByName("delDate")[0];
+				let spn = document.getElementsByTagName("span")[2]
 				if (value + min != min) {
-				
-				value = value.split('-')
-				value = `${value[0]}${value[1]}${value[2]}`
-				min = min.split('-')
-				min = `${min[0]}${min[1]}${min[2]}`
-				if (value >= min) {
-					tag.setAttribute("class", 'correct')
-					
+					value = value.split('-')
+					value = `${value[0]}${value[1]}${value[2]}`
+					min = min.split('-')
+					if (Number(min[2])<10) {
+						min = `${min[0]}${min[1]}0${min[2]}`
+					}
+					else {
+						min = `${min[0]}${min[1]}${min[2]}`
+					}
+					if (value >= min) {
+						tag.setAttribute("class", 'correct')
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
+					}
 				}
-			}
-			else {
-					tag.setAttribute("class", 'incorrect') 
+				else {
+						tag.setAttribute("class", 'incorrect')
+						spn.setAttribute("class", 'incorrectspan') 
+
 				};
 				iscorrect()
 			};
 
 			function streetn(value) {
 				let tag = document.getElementsByName("street")[0];
+				let spn = document.getElementsByTagName("span")[3]
 				if (value == value.match(/[0-9A-Za-z ]{5,}/)) {
 					tag.setAttribute("class", 'correct')
-					
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
 				};
 				iscorrect()
 			};
 
 			function housen(value) {
 				let tag = document.getElementsByName("house")[0];
+				let spn = document.getElementsByTagName("span")[4]
 				if (value == value.match(/[0-9]{1,}/)) {
 					tag.setAttribute("class", 'correct')
-					
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
 				}
 				iscorrect()
 			};
 
 			function flatn(value) {
 				let tag = document.getElementsByName("flat")[0];
+				let spn = document.getElementsByTagName("span")[5]
 				if (value == value.match(/[0-9]+[0-9-]*/)) {
 					tag.setAttribute("class", 'correct')
-					
+					spn.setAttribute("class", 'correctspan') 
 				}
 				else {
 					tag.setAttribute("class", 'incorrect') 
+					spn.setAttribute("class", 'incorrectspan') 
 				};
 				iscorrect()
 			};
@@ -120,10 +173,12 @@
 		<br><br>
 		<label for="fname">First Name:</label>
         <input type="text" pattern="[A-Za-z]{4,}" name="fname" id="fname"  onblur="fstname(this.value)">
+        <span class="correctspan">Only letters, min length 4</span>
         <br><br>
   
         <label for="lname">Last Name:</label>
         <input type="text" pattern="[A-Za-z]{5,}" name="lname" id="lname" onblur="lastname(this.value)">
+        <span class="correctspan">Only letters, min length 5</span>
         <br><br>
 
         <label for="delDate">Delivery date:</label>
@@ -133,18 +188,22 @@
        		date = `${date[0]}-${date[1]}-${Number(date[2])+1}`
        		delDate.min = date
    		</script> 
+   		<span class="correctspan">Enter a date starting from tomarrow</span>
 		<br><br>
 
 		<label for="street">Street:</label>
         <input type="text" pattern="[0-9A-Za-z ]{5,}" name="street" id="street" onblur="streetn(this.value)" >
+        <span class="correctspan">Letters and numbers, min length 5</span>
         <br><br>
 
 		<label for="house">House number:</label>
         <input type="text" pattern="[0-9]{1,}" name="house" id="house" onblur="housen(this.value)" >
+        <span class="correctspan">Only numbers, min length 1</span>
         <br><br>
 
 		<label for="flat">Flat number:</label>
         <input type="text" pattern="[0-9]+[0-9-]*" name="flat" id="flat" onblur="flatn(this.value)" >
+        <span class="correctspan">Numbers greater from 0, '23-2' format is also correct</span>
         <br><br>
 
 		<input class="radio_period" id="month" type="radio" name="radio">
