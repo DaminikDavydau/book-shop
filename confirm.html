@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Book shop - Confirm Order</title>
-	<style type="text/css">
+	<style>
 		input {
 			border-radius: 5px;
 		}
@@ -17,7 +17,7 @@
 }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function(){
 			$(".correctspan").hide();
   			$("input").blur(function(){
@@ -56,7 +56,7 @@
 
 
 	<form action="https://www.w3schools.com/action_page.php" onsubmit="alert(`The order created. The delivery address is ${document.getElementsByName('street')[0].value} street house ${document.getElementsByName('house')[0].value} flat ${document.getElementsByName('flat')[0].value}. Customer ${document.getElementsByName('fname')[0].value} ${document.getElementsByName('lname')[0].value}`);//return false" method="post">
-		<script type="text/javascript">
+		<script>
 			function iscorrect() {
 				let countcorrect = document.getElementsByClassName("correct")
 				if (countcorrect.length >= 6) {
@@ -183,7 +183,7 @@
 
         <label for="delDate">Delivery date:</label>
 		<input type="date" id="delDate" name="delDate" onblur="delivDate(this.value, this.min)" >
-       	<script type="text/javascript">
+       	<script>
        		let date = new Date().toISOString().split("T")[0].split("-");
        		date = `${date[0]}-${date[1]}-${Number(date[2])+1}`
        		delDate.min = date
@@ -213,7 +213,7 @@
 		<br><br>
 
 		<input type="submit" id="register" value="Submit" disabled="disabled">
-		<script type="text/javascript">
+		<script>
 			function sbmt() {
 
 				let doc = new DocumentFragment();
